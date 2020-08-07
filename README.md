@@ -12,5 +12,7 @@ This library can be installed using the following pip command:
 In order to start using the library in your Python scripts, please import the modules
 at the beginning of your scripts as follow:
 ``` Python
-from semfio_mist import api
+from semfio_mist import Config
+from semfio_mist import logger
+from semfio_mist import API
 ```
