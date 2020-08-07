@@ -1,6 +1,12 @@
 # __init__.py
 
 # Version of the semfio-mist package
-__version__ = "0.0.2"
+__version__ = "0.0.3"
 
 import semfio_mist
+from .config import Config
+from .logger import logger, Logger_Engine
+from .mist_api import API
+from .mist_site import Site
+from .mist_wlan import WLAN
+from .mist_ap import AP
