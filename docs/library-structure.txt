@@ -1,0 +1,109 @@
+Modules:
+  -> mist-api.py
+    Classes:
+      *|-> Api       : For all API operations
+          -> Variables:
+             *|--> mist_cloud_url: str = "https://api.mist.com/api/v1/"
+             *|--> _headers: dict = {}
+             *|--> org_id: str = None
+             *|--> _mist_token: Token = None
+             *|--> session: requests.session
+          -> Methods:
+             *|--> __init__(self, token: Token, config: Config, *args, **kwargs)
+              |--> verify_connectivity(self) -> bool
+             *|--> get(self, call_url) -> requests.Response
+             *|--> _verify_get_response(self, response: requests.Response) -> dict
+             *|--> post(self, call_url, body) -> requests.Response
+             *|--> put(self, call_url, body) -> requests.Response
+             *|--> delete(self, call_url) -> requests.Response
+             *|--> __exit__(self)
+
+     *|-> Token     : Handles tokens (part of API)
+          -> Variables:
+             *|--> MASTER_TOKEN
+             *|--> tmp_token_key
+             *|--> tmp_token_id
+          -> Methods:
+             *|--> __init__(self)
+             *|--> get_tmp_token(self)
+             *|--> delete_tmp_token(self)
+
+
+  -> config.py
+    Classes:
+       *|-> Config    : Handles all configurations data coming from the user
+          -> Variables:
+             *|--> filename: str
+             *|--> data: dict
+          -> Methods:
+             *|--> __init__(self, filename: str, *args, **kwargs)
+
+  -> mist-site.py
+   Classes:
+     |-> Site      : Handles all Mist Site operations
+          -> Variables:
+              |--> id: str
+              |--> name: str
+          -> Methods:
+             *|--> __init__(self, config: Config, *args, **kwargs)
+             *|--> _does_exist
+             *|--> create(self)
+             *|--> configure(self)
+             *|--> delete(self)
+             *|--> __delete__(self)
+
+  -> mist-org.py
+    Classes:
+      |-> Org      : Handles all Mist Org operations
+
+
+  -> mist-wlan.py
+    Classes:
+      |-> Wlan      : Handles all Mist WLAN operations
+          -> Variables:
+             *|--> wlan_id: str
+             *|--> ssid: str
+             *|--> site_id: str
+             *|--> api: API
+             *|--> band: str
+             *|--> interface: str
+             *|--> hostname_ie: str
+             *|--> auth: dict
+             *|--> auth_servers: list
+             *|--> roam_mode: str
+             *|--> rateset: dict
+          -> Methods:
+             *|--> __init__(self, config: Config, *args, **kwargs)
+             *|--> _validate_psk_configuration(self, config)
+             *|--> _validate_dot1x_configuration(self, config)
+             *|--> _does_exist_on_cloud(self)
+             *|--> create(self)
+             *|--> delete(self)
+             *|--> __delete__(self)
+
+
+  -> mist-ap.py
+    Classes:
+      |-> Ap        : Handles all Mist AP operations
+          -> Variables:
+             *|--> mac: str
+             *|--> site_id: str
+             *|--> api: API
+             *|--> site_name: str = None
+             *|--> model: str = None
+             *|--> serial: str = None
+             *|--> claim_code: str = None
+             *|--> height: str = None
+             *|--> orientation: str = None
+             *|--> map: dict = None
+             *|--> radio_configs = dict
+          -> Methods:
+             *|--> __init__(self, config: Config, *args, **kwargs)
+             *|--> _does_belong_to_site(self)
+             *|--> _has_been_claimed(self)
+             *|--> claim(self)
+             *|--> provision(self)
+             *|--> configure_radios(self)
+             *|--> unassign(self)
+             *|--> release(self)
+             *|--> __delete__(self)
