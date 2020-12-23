@@ -41,16 +41,33 @@ Modules:
   -> mist-site.py
    Classes:
      |-> Site      : Handles all Mist Site operations
-          -> Variables:
-              |--> id: str
-              |--> name: str
-          -> Methods:
-             *|--> __init__(self, config: Config, *args, **kwargs)
-             *|--> _does_exist
-             *|--> create(self)
-             *|--> configure(self)
-             *|--> delete(self)
-             *|--> __delete__(self)
+           -> Variables:
+               |--> site_id: str
+               |--> name: str
+               |--> api: API
+               |--> org_id: str
+               |--> timezone: str = None
+               |--> country_code: str = None
+               |--> rftemplate_id: str = None
+               |--> secpolicy_id: str = None
+               |--> alarmtemplate_id: str = None
+               |--> lat: float = None
+               |--> lng: float = None
+               |--> country_code = None
+               |--> sitegroup_ids: [str] = None
+               |--> address: str = None
+               |--> google_api_key = None
+               |--> rf_template_id = None
+               |--> sitegroup_ids = []
+           -> Methods:
+              *|--> __init__(self, config: Config, *args, **kwargs)
+              *|--> _does_exist_on_cloud(self)
+              *|--> create(self)
+              *|--> configure_persist_config_on_device(self, config_persistence_enable: bool)
+              *|--> configure_rf_template(self, rf_template_id: str)
+              *|--> configure_site_settings(self, configs_update: dict)
+              *|--> delete(self)
+              *|--> __delete__(self)
 
   -> mist-org.py
     Classes:
