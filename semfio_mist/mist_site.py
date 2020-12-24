@@ -2,9 +2,9 @@ import geocoder
 import requests
 import time
 
-from pymist.logger import logger
-from pymist.config import Config
-from pymist.mist_api import API
+from semfio_mist.logger import logger
+from semfio_mist.config import Config
+from semfio_mist.mist_api import API
 
 
 class Site:
