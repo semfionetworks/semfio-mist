@@ -1,7 +1,7 @@
 # __init__.py
 
 # Version of the semfio-mist package
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 
 import semfio_mist
 from .config import Config
